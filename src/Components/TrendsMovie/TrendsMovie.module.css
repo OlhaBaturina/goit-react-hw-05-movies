@@ -1,4 +1,11 @@
 .filmLink {
+    list-style: square;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+.filmLink:hover,
+.filmLink:focus {
+    color: rgb(18, 184, 170);
 }
 
 .filmsList {
