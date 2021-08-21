@@ -1,7 +1,7 @@
+import s from './SearchMovies.module.css';
 import React, { useState } from 'react';
-import s from './Searchbar.module.css';
 
-export function Searchbar({ onSubmit }) {
+function SearchMovie({ onSubmit }) {
     const [query, setQuery] = useState('');
 
     const handleChange = e => {
@@ -15,7 +15,7 @@ export function Searchbar({ onSubmit }) {
     };
 
     return (
-        <header className={s.Searchbar}>
+        <header className={s.SearchMovie}>
             <form className={s.SearchForm} onSubmit={handleSubmit}>
                 <button type="submit" className={s.SearchForm_button}>
                     <span className={s.SearchForm_button_label}>Search</span>
@@ -35,4 +35,4 @@ export function Searchbar({ onSubmit }) {
     );
 }
 
-export default Searchbar;
+export default SearchMovie;

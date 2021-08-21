@@ -14,6 +14,7 @@ import Navigation from './Components/Navigation/Navigation';
 import HomePage from './views/HomePage';
 import MoviesPage from './views/MoviesPage';
 import NotFound from './views/NotFound';
+import SearchMovie from './Components/SearchMovies/SearchMovies';
 
 export function App() {
     // const [images, setImages] = useState([]);
