@@ -1,0 +1,20 @@
+.Navigation {
+    display: flex;
+    align-items: stretch;
+    /* position: fixed; */
+    width: 100%;
+    /* top: 0;
+    left: 0; */
+    box-shadow: -5px 5px 5px rgba(71, 203, 207, 0.137);
+}
+
+.navLink {
+    margin: 30px;
+    color: rgba(16, 71, 73, 0.993);
+    text-decoration: none;
+}
+
+.activeLink {
+    color: rgb(18, 184, 170);
+    font-weight: bold;
+}
