@@ -28,7 +28,7 @@ function SearchMovie({ onSubmit }) {
                     type="text"
                     autoComplete="off"
                     autoFocus
-                    placeholder="Search images and photos"
+                    placeholder="Search movie"
                 />
             </form>
         </header>
