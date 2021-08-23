@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 import { useRouteMatch, NavLink } from 'react-router-dom';
+import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
@@ -22,6 +23,9 @@ export default function MovieDetailsPage() {
 
     return (
         <div>
+            <button>
+                <HiOutlineArrowNarrowLeft /> Go back
+            </button>
             <div>
                 <img
                     src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
