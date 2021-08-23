@@ -6,6 +6,7 @@ import HomePage from './views/HomePage';
 import MoviesPage from './views/MoviesPage';
 import NotFound from './views/NotFound';
 import MovieDetailsPage from './Components/MovieDetailsPage/MovieDetailsPage';
+import CastDetails from './Components/Cast/Cast';
 
 export function App() {
     return (
@@ -20,6 +21,9 @@ export function App() {
                 </Route>
                 <Route path="/movies/:movieId">
                     <MovieDetailsPage />
+                </Route>
+                <Route path="/movies/:movieId/cast">
+                    <CastDetails />
                 </Route>
                 <Route>
                     <NotFound />

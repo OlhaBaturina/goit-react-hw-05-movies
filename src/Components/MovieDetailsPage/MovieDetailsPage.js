@@ -8,15 +8,13 @@ import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const { url } = useRouteMatch();
-    console.log(url);
+    // console.log(url);
 
     const [movie, setMovie] = useState({});
     console.log(movie);
+
     useEffect(() => {
-        fetchAPI
-            .getMoviesInfo(movieId)
-            .then(setMovie)
-            .catch(error => console.error);
+        fetchAPI.getMoviesInfo(movieId).then(setMovie);
     }, [movieId]);
 
     const newDate = new Date(movie.release_date);

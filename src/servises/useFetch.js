@@ -23,10 +23,13 @@ const getMoviesInfo = filmId => {
         .then(res => res.data);
 };
 
-const getCastOfMovie = filmId => {
+const getCast = filmId => {
     return axios
         .get(`${baseURL}movie/${filmId}/credits?api_key=${API_KEY}`)
-        .then(res => res.data.cast);
+        .then(res => {
+            console.log(res);
+            return res.data.cast;
+        });
 };
 
 const getReviews = filmId => {
@@ -37,7 +40,7 @@ const getReviews = filmId => {
 
 export const fetchAPI = {
     getFilmBySearch,
-    getCastOfMovie,
+    getCast,
     getDaysTrends,
     getMoviesInfo,
     getReviews,
