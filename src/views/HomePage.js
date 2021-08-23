@@ -1,11 +1,6 @@
-import { div } from 'prelude-ls';
+import { Switch } from 'react-router';
 import TrendsMovie from '../Components/TrendsMovie/TrendsMovie';
 
-const HomePage = () => (
-    <div>
-        {/* <TrendsMovie/>s */}
-        <h1>Hello</h1>
-    </div>
-);
+const HomePage = () => <TrendsMovie />;
 
 export default HomePage;

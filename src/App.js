@@ -1,29 +1,25 @@
 import React from 'react';
-// import { toast, ToastContainer } from 'react-toastify';
-import { Switch, Route } from 'react-router';
-import 'react-toastify/dist/ReactToastify.css';
+import { Switch, Route, useRouteMatch } from 'react-router';
 import s from './App.css';
-// import Tour from './Components/Tour/Tour';
 import Navigation from './Components/Navigation/Navigation';
-// import HomePage from './views/HomePage';
+import HomePage from './views/HomePage';
 import MoviesPage from './views/MoviesPage';
 import NotFound from './views/NotFound';
-// import SearchMovie from './Components/SearchMovies/SearchMovies';
-// import { fetchAPI } from './servises/useFetch';
-import TrendsMovie from './Components/TrendsMovie/TrendsMovie';
+import MovieDetailsPage from './Components/MovieDetailsPage/MovieDetailsPage';
 
 export function App() {
     return (
         <div className={s.App}>
-            {/* <ToastContainer /> */}
-            {/* <Tour /> */}
             <Navigation />
             <Switch>
                 <Route exact path="/">
-                    <TrendsMovie />
+                    <HomePage />
                 </Route>
-                <Route path="/movies">
+                <Route exact path="/movies">
                     <MoviesPage />
+                </Route>
+                <Route path="/movies/:movieId">
+                    <MovieDetailsPage />
                 </Route>
                 <Route>
                     <NotFound />

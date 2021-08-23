@@ -1,9 +1,10 @@
 import s from './TrendsMovie.module.css';
 import { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
-import { NavLink } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 export default function TrendsMovie() {
+    const { url } = useRouteMatch();
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -17,9 +18,10 @@ export default function TrendsMovie() {
             <ul className={s.filmsList}>
                 {movies.map(movie => (
                     <li className={s.filmLink} key={movie.id}>
-                        {/* <NavLink > */}
-                        {movie.title || movie.name}
-                        {/* </NavLink> */}
+                        {console.log(movie.id)}
+                        <Link to={`/movies/${movie.id}`}>
+                            {movie.title || movie.name}
+                        </Link>
                     </li>
                 ))}
             </ul>
