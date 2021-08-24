@@ -16,7 +16,7 @@ export default function ReviewsDetails() {
         <ul>
             {reviews.length > 0
                 ? reviews.map(({ author, content, id }) => (
-                      <li key={id}>
+                      <li key={id} className={s.listItem}>
                           <h3>Author: {author}</h3>
                           <p>{content}</p>
                       </li>

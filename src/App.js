@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router';
-import s from './App.css';
+import './App.css';
 import Navigation from './Components/Navigation/Navigation';
 import HomePage from './views/HomePage';
 import MoviesPage from './views/MoviesPage';
@@ -10,7 +10,7 @@ import CastDetails from './Components/Cast/Cast';
 
 export function App() {
     return (
-        <div className={s.App}>
+        <div>
             <Navigation />
             <Switch>
                 <Route exact path="/">

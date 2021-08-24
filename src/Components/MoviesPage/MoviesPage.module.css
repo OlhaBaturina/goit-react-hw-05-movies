@@ -71,3 +71,13 @@
     font: inherit;
     font-size: 18px;
 }
+
+.listItem {
+    list-style: square;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.listItem:hover {
+    color: rgb(18, 184, 170);
+}

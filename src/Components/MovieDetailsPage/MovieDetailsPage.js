@@ -20,45 +20,47 @@ export default function MovieDetailsPage() {
     const newDate = new Date(movie.release_date);
 
     return (
-        <div>
-            <button>
+        <div className={s.movieDetailsPage}>
+            <button className={s.buttonBack}>
                 <HiOutlineArrowNarrowLeft /> Go back
             </button>
             {movie.title || movie.name ? (
                 <div>
-                    <img
-                        src={
-                            movie.poster_path
-                                ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
-                                : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
-                        }
-                        alt={movie.title || movie.name}
-                        width="300"
-                    />
-                    <div>
-                        <h1>
-                            {movie.title || movie.name} ({newDate.getFullYear()}
-                            )
-                        </h1>
-                        <p>User Score: {movie.vote_average * 10} %</p>
-                        <h2>Overview</h2>
-                        <p>{movie.overview}</p>
-                        <h2>Genres</h2>
-                        <p>
-                            {movie.genres &&
-                                movie.genres.map(({ name }) => (
-                                    <span> {name} </span>
-                                ))}
-                        </p>
+                    <div className={s.thumb}>
+                        <img
+                            src={
+                                movie.poster_path
+                                    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                                    : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
+                            }
+                            alt={movie.title || movie.name}
+                            width="300"
+                        />
+                        <div className={s.filmDetails}>
+                            <h1>
+                                {movie.title || movie.name} (
+                                {newDate.getFullYear()})
+                            </h1>
+                            <p>User Score: {movie.vote_average * 10} %</p>
+                            <h2>Overview</h2>
+                            <p>{movie.overview}</p>
+                            <h2>Genres</h2>
+                            <p>
+                                {movie.genres &&
+                                    movie.genres.map(({ name }) => (
+                                        <span> {name} </span>
+                                    ))}
+                            </p>
+                        </div>
                     </div>
                     <hr />
                     <div>
-                        <p>Additional information</p>
+                        <h3>Additional information</h3>
                         <ul>
-                            <li>
+                            <li className={s.link}>
                                 <NavLink to={`${url}/cast`}>Cast</NavLink>
                             </li>
-                            <li>
+                            <li className={s.link}>
                                 <NavLink to={`${url}/reviews`}>Reviews</NavLink>
                             </li>
                         </ul>

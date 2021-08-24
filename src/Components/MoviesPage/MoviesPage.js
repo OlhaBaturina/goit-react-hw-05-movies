@@ -47,7 +47,7 @@ function SearchMovie() {
             {films.length > 0 && (
                 <ul>
                     {films.map(film => (
-                        <li key={film.id}>
+                        <li key={film.id} className={s.listItem}>
                             <Link to={`/movies/${film.id}`}>
                                 {film.title || film.name}
                             </Link>

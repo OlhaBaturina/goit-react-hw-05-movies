@@ -1,0 +1,28 @@
+.movieDetailsPage {
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.buttonBack:hover,
+.buttonBack:focus {
+    background-color: rgba(18, 184, 170, 0.486);
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.thumb {
+    display: flex;
+    justify-content: left;
+}
+
+.filmDetails {
+    max-width: 600px;
+    margin-left: 15px;
+}
+
+.link {
+    color: rgba(18, 184, 170);
+    list-style: square;
+    margin-bottom: 8px;
+    font-size: 16px;
+}

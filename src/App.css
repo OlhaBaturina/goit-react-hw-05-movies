@@ -4,3 +4,19 @@
     grid-gap: 16px;
     padding-bottom: 24px;
 }
+
+a:link {
+    color: rgb(9, 156, 144);
+    outline: none;
+    text-decoration: none;
+}
+a:visited {
+    color: rgb(39, 160, 150);
+}
+a:hover {
+    color: rgb(67, 105, 102);
+    border-bottom: 0.07em solid;
+}
+a:active {
+    color: rgb(20, 99, 92);
+}

@@ -13,10 +13,10 @@ export default function CastDetails() {
     }, [movieId]);
 
     return (
-        <ul>
+        <ul className={s.list}>
             {cast.length > 0
                 ? cast.map(({ profile_path, character, id, name }) => (
-                      <li key={id}>
+                      <li key={id} className={s.listItem}>
                           <div>
                               <img
                                   src={
