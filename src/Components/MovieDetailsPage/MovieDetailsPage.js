@@ -1,5 +1,5 @@
 import s from './MovieDetailsPage.module.css';
-import { useParams, Route, Switch } from 'react-router';
+import { useParams, Route } from 'react-router';
 import { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 import { useRouteMatch, NavLink } from 'react-router-dom';
@@ -10,10 +10,8 @@ import ReviewsDetails from '../Reviews/Reviews';
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const { url } = useRouteMatch();
-    // console.log(url);
 
     const [movie, setMovie] = useState({});
-    console.log(movie);
 
     useEffect(() => {
         fetchAPI.getMoviesInfo(movieId).then(setMovie);

@@ -1,6 +1,7 @@
 import s from './MoviesPage.module.css';
 import React, { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
+import { Link } from 'react-router-dom';
 
 function SearchMovie() {
     const [query, setQuery] = useState('');
@@ -46,7 +47,11 @@ function SearchMovie() {
             {films.length > 0 && (
                 <ul>
                     {films.map(film => (
-                        <li key={film.id}>{film.title || film.name}</li>
+                        <li key={film.id}>
+                            <Link to={`/movies/${film.id}`}>
+                                {film.title || film.name}
+                            </Link>
+                        </li>
                     ))}
                 </ul>
             )}

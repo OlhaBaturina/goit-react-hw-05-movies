@@ -26,10 +26,7 @@ const getMoviesInfo = filmId => {
 const getCast = filmId => {
     return axios
         .get(`${baseURL}movie/${filmId}/credits?api_key=${API_KEY}`)
-        .then(res => {
-            console.log(res);
-            return res.data.cast;
-        });
+        .then(res => res.data.cast);
 };
 
 const getReviews = filmId => {
