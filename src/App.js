@@ -22,9 +22,7 @@ export function App() {
                 <Route path="/movies/:movieId">
                     <MovieDetailsPage />
                 </Route>
-                <Route path="/movies/:movieId/cast">
-                    <CastDetails />
-                </Route>
+
                 <Route>
                     <NotFound />
                 </Route>

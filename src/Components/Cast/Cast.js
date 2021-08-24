@@ -8,7 +8,7 @@ export default function CastDetails() {
     const { movieId } = useParams();
     console.log(movieId);
 
-    const [cast, setCast] = useState({});
+    const [cast, setCast] = useState([]);
     console.log(cast);
 
     useEffect(() => {
@@ -17,18 +17,25 @@ export default function CastDetails() {
 
     return (
         <ul>
-            {cast.map(({ profile_path, character, id, name }) => (
-                <li key={id}>
-                    <div>
-                        <img
-                            src={`https://image.tmdb.org/t/p/w200${profile_path}`}
-                            alt={name}
-                        />
-                    </div>
-                    <h3>{name}</h3>
-                    <p>{character}</p>
-                </li>
-            ))}
+            {cast.length > 0
+                ? cast.map(({ profile_path, character, id, name }) => (
+                      <li key={id}>
+                          <div>
+                              <img
+                                  src={
+                                      profile_path
+                                          ? `https://image.tmdb.org/t/p/w200${profile_path}`
+                                          : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
+                                  }
+                                  alt={name}
+                                  width="200"
+                              />
+                          </div>
+                          <h3>{name}</h3>
+                          <p>{character}</p>
+                      </li>
+                  ))
+                : 'No information about cast'}
         </ul>
     );
 }
