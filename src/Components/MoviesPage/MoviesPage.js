@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import CustomLoader from '../Loader/Loader';
+import NotFound from '../../views/NotFound';
 
 function SearchMovie() {
     const [query, setQuery] = useState('');
@@ -69,33 +70,27 @@ function SearchMovie() {
                 </form>
             </header>
 
-            {(status === 'pending' && (
-                <ul>
-                    {films.map(film => (
-                        <li key={film.id} className={s.listItem}>
-                            <Link
-                                to={{
-                                    pathname: `/movies/${film.id}`,
-                                    state: { from: location },
-                                }}
-                            >
-                                {film.title || film.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            )) ||
+            {(status === 'pending' &&
+                (films.length >= 1 ? (
+                    <ul>
+                        {films.map(film => (
+                            <li key={film.id} className={s.listItem}>
+                                <Link
+                                    to={{
+                                        pathname: `/movies/${film.id}`,
+                                        state: { from: location },
+                                    }}
+                                >
+                                    {film.title || film.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <NotFound />
+                ))) ||
                 (status === 'loading' && <CustomLoader />) ||
-                (status === 'rejected' && (
-                    <div>
-                        <h1>No movies for your request</h1>
-                        <img
-                            src="https://mtdata.ru/u8/photo39C2/20569542232-0/original.jpg"
-                            alt="Page not found"
-                            width="360"
-                        />
-                    </div>
-                ))}
+                (status === 'rejected' && <NotFound />)}
         </div>
     );
 }

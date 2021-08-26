@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router';
+import { Switch, Route } from 'react-router';
 import './App.css';
 import Navigation from './Components/Navigation/Navigation';
 import CustomLoader from './Components/Loader/Loader';

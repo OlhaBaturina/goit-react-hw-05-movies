@@ -3,9 +3,19 @@
     padding: 15px;
 }
 
+.buttonBack {
+    width: 100px;
+    height: 30px;
+    border: none;
+    margin-bottom: 20px;
+    background-color: rgba(18, 184, 170, 0.185);
+    box-shadow: 3px 5px 5px rgba(18, 184, 170, 0.486);
+}
+
 .buttonBack:hover,
 .buttonBack:focus {
     background-color: rgba(18, 184, 170, 0.486);
+    box-shadow: 3px 5px 5px rgba(18, 184, 170, 0.185);
     cursor: pointer;
     border-radius: 2px;
 }

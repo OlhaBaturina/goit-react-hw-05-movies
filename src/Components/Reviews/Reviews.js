@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 import CustomLoader from '../Loader/Loader';
+import NotFound from '../../views/NotFound';
 
 export default function ReviewsDetails() {
     const { movieId } = useParams();
@@ -24,18 +25,20 @@ export default function ReviewsDetails() {
     return (
         <ul>
             {(status === 'pending' &&
-                reviews.map(({ author, content, id }) => (
-                    <li key={id} className={s.listItem}>
-                        <h4>
-                            Author: <span> {author}</span>
-                        </h4>
-                        <p>{content}</p>
-                    </li>
+                (reviews.length >= 1 ? (
+                    reviews.map(({ author, content, id }) => (
+                        <li key={id} className={s.listItem}>
+                            <h4>
+                                Author: <span> {author}</span>
+                            </h4>
+                            <p>{content}</p>
+                        </li>
+                    ))
+                ) : (
+                    <h3>We don't have any reviews for this movie.</h3>
                 ))) ||
                 (status === 'loading' && <CustomLoader />) ||
-                (status === 'rejected' && (
-                    <h3>We don't have any reviews for this movie.</h3>
-                ))}
+                (status === 'rejected' && <NotFound />)}
         </ul>
     );
 }

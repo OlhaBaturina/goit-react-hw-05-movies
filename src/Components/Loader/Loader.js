@@ -5,7 +5,7 @@ const CustomLoader = () => (
     <div className={s.Loader}>
         <Loader
             type="ThreeDots"
-            color="#3f51b5"
+            color="#12B8AA"
             height={80}
             width={80}
             timeout={3000}
