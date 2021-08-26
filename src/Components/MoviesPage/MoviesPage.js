@@ -2,6 +2,7 @@ import s from './MoviesPage.module.css';
 import React, { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 import { Link, useLocation, useHistory } from 'react-router-dom';
+import CustomLoader from '../Loader/Loader';
 
 function SearchMovie() {
     const [query, setQuery] = useState('');
@@ -10,9 +11,19 @@ function SearchMovie() {
     const location = useLocation();
     const history = useHistory();
     const urlQuery = new URLSearchParams(location.search).get('search');
+    const [status, setStatus] = useState('pending');
 
     useEffect(() => {
-        search && fetchAPI.getFilmBySearch(search).then(setFilms);
+        setStatus('loading');
+        search &&
+            fetchAPI
+                .getFilmBySearch(search)
+                .then(r => {
+                    console.log(r);
+                    setFilms(r);
+                    setStatus('pending');
+                })
+                .catch(error => error && setStatus('rejected'));
     }, [search]);
 
     const handleChange = e => {
@@ -58,7 +69,7 @@ function SearchMovie() {
                 </form>
             </header>
 
-            {films.length > 0 && (
+            {(status === 'pending' && (
                 <ul>
                     {films.map(film => (
                         <li key={film.id} className={s.listItem}>
@@ -73,18 +84,18 @@ function SearchMovie() {
                         </li>
                     ))}
                 </ul>
-            )}
-
-            {films.length === 0 && search && (
-                <>
-                    <h2>No movies for your request</h2>
-                    <img
-                        src="https://mtdata.ru/u8/photo39C2/20569542232-0/original.jpg"
-                        alt="Not found"
-                        width="360"
-                    />
-                </>
-            )}
+            )) ||
+                (status === 'loading' && <CustomLoader />) ||
+                (status === 'rejected' && (
+                    <div>
+                        <h1>No movies for your request</h1>
+                        <img
+                            src="https://mtdata.ru/u8/photo39C2/20569542232-0/original.jpg"
+                            alt="Page not found"
+                            width="360"
+                        />
+                    </div>
+                ))}
         </div>
     );
 }
