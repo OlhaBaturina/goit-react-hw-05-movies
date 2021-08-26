@@ -20,13 +20,14 @@ export default function MovieDetailsPage() {
     const history = useHistory();
     const [movie, setMovie] = useState({});
     const newDate = new Date(movie.release_date);
+    // const [status, setStatus] = useState('pending');
 
     useEffect(() => {
         fetchAPI.getMoviesInfo(movieId).then(setMovie);
     }, [movieId]);
 
     const clickOnBack = () => {
-        history.push(location.state.from);
+        history.push(location?.state?.from ?? `/movies`);
     };
 
     return (
@@ -72,10 +73,24 @@ export default function MovieDetailsPage() {
                         <h3>Additional information</h3>
                         <ul>
                             <li className={s.link}>
-                                <NavLink to={`${url}/cast`}>Cast</NavLink>
+                                <NavLink
+                                    to={{
+                                        pathname: `${url}/cast`,
+                                        // state: { from: `/movies/${movie.id}` },
+                                    }}
+                                >
+                                    Cast
+                                </NavLink>
                             </li>
                             <li className={s.link}>
-                                <NavLink to={`${url}/reviews`}>Reviews</NavLink>
+                                <NavLink
+                                    to={{
+                                        pathname: `${url}/reviews`,
+                                        // state: { from: `/movies/${movie.id}` },
+                                    }}
+                                >
+                                    Reviews
+                                </NavLink>
                             </li>
                         </ul>
                     </div>

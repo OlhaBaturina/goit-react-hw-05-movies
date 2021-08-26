@@ -1,11 +1,12 @@
 import s from './Cast.module.css';
-import { useParams } from 'react-router';
+import { useParams, useLocation, useHistory } from 'react-router';
 import { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 
 export default function CastDetails() {
     const { movieId } = useParams();
-
+    const location = useLocation();
+    const history = useHistory();
     const [cast, setCast] = useState([]);
 
     useEffect(() => {

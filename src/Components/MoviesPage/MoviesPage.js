@@ -9,6 +9,7 @@ function SearchMovie() {
     const [films, setFilms] = useState([]);
     const location = useLocation();
     const history = useHistory();
+    const urlQuery = new URLSearchParams(location.search).get('search');
 
     useEffect(() => {
         search && fetchAPI.getFilmBySearch(search).then(setFilms);
@@ -18,9 +19,20 @@ function SearchMovie() {
         setQuery(e.currentTarget.value);
     };
 
+    useEffect(() => {
+        if (search === null) {
+            setSearch(urlQuery);
+        }
+    }, []);
+
     const handleSubmit = e => {
         e.preventDefault();
+
         setSearch(query);
+        history.push({
+            ...location,
+            search: `search=${query}`,
+        });
         setQuery('');
     };
 
