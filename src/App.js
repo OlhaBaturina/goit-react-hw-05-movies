@@ -1,32 +1,38 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router';
 import './App.css';
 import Navigation from './Components/Navigation/Navigation';
-import HomePage from './views/HomePage';
-import MoviesPage from './views/MoviesPage';
-import NotFound from './views/NotFound';
-import MovieDetailsPage from './Components/MovieDetailsPage/MovieDetailsPage';
-import CastDetails from './Components/Cast/Cast';
+import CustomLoader from './Components/Loader/Loader';
+
+const HomePage = lazy(() => import('./views/HomePage'));
+const MoviesPage = lazy(() => import('./views/MoviesPage'));
+const NotFound = lazy(() => import('./views/NotFound'));
+const MovieDetailsPage = lazy(() =>
+    import('./Components/MovieDetailsPage/MovieDetailsPage'),
+);
 
 export function App() {
     return (
         <div>
             <Navigation />
-            <Switch>
-                <Route exact path="/">
-                    <HomePage />
-                </Route>
-                <Route exact path="/movies">
-                    <MoviesPage />
-                </Route>
-                <Route path="/movies/:movieId">
-                    <MovieDetailsPage />
-                </Route>
 
-                <Route>
-                    <NotFound />
-                </Route>
-            </Switch>
+            <Suspense fallback={<CustomLoader />}>
+                <Switch>
+                    <Route exact path="/">
+                        <HomePage />
+                    </Route>
+                    <Route exact path="/movies">
+                        <MoviesPage />
+                    </Route>
+                    <Route path="/movies/:movieId">
+                        <MovieDetailsPage />
+                    </Route>
+
+                    <Route>
+                        <NotFound />
+                    </Route>
+                </Switch>
+            </Suspense>
         </div>
     );
 }
