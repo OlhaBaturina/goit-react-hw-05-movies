@@ -20,10 +20,20 @@ export default function MovieDetailsPage() {
     const history = useHistory();
     const [movie, setMovie] = useState({});
     const newDate = new Date(movie.release_date);
-    // const [status, setStatus] = useState('pending');
+    const [status, setStatus] = useState('pending');
+
+    console.log(status);
 
     useEffect(() => {
-        fetchAPI.getMoviesInfo(movieId).then(setMovie);
+        setStatus('loading');
+        fetchAPI
+            .getMoviesInfo(movieId)
+            .then(r => {
+                console.log(r);
+                setMovie(r);
+                setStatus('pending');
+            })
+            .catch(error => error && setStatus('rejected'));
     }, [movieId]);
 
     const clickOnBack = () => {
@@ -39,7 +49,7 @@ export default function MovieDetailsPage() {
             >
                 <HiOutlineArrowNarrowLeft /> Go back
             </button>
-            {movie.title || movie.name ? (
+            {(status === 'pending' && (
                 <div>
                     <div className={s.thumb}>
                         <img
@@ -105,16 +115,18 @@ export default function MovieDetailsPage() {
                         </Route>
                     </Suspense>
                 </div>
-            ) : (
-                <div>
-                    <h1>404 Page not found 🔍</h1>
-                    <img
-                        src="https://mtdata.ru/u8/photo39C2/20569542232-0/original.jpg"
-                        alt="Page not found"
-                        width="360"
-                    />
-                </div>
-            )}
+            )) ||
+                (status === 'loading' && <CustomLoader />) ||
+                (status === 'rejected' && (
+                    <div>
+                        <h1>404 Page not found 🔍</h1>
+                        <img
+                            src="https://mtdata.ru/u8/photo39C2/20569542232-0/original.jpg"
+                            alt="Page not found"
+                            width="360"
+                        />
+                    </div>
+                ))}
         </div>
     );
 }
