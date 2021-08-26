@@ -1,0 +1,2 @@
+(this["webpackJsonpgoit-react-hw-05-movies"]=this["webpackJsonpgoit-react-hw-05-movies"]||[]).push([[9],{54:function(t,e,i){"use strict";i.r(e);var o=i(1);e.default=function(){return Object(o.jsxs)("div",{children:[Object(o.jsx)("h1",{children:"404 Page not found \ud83d\udd0d"}),Object(o.jsx)("img",{src:"https://mtdata.ru/u8/photo39C2/20569542232-0/original.jpg",alt:"Page not found",width:"360"})]})}}}]);
+//# sourceMappingURL=9.17ed9262.chunk.js.map
