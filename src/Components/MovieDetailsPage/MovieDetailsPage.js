@@ -1,11 +1,12 @@
 import s from './MovieDetailsPage.module.css';
 import { useParams, Route } from 'react-router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 import { useRouteMatch, NavLink } from 'react-router-dom';
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
-import CastDetails from '../Cast/Cast';
-import ReviewsDetails from '../Reviews/Reviews';
+import CustomLoader from '../Loader/Loader';
+const CastDetails = lazy(() => import('../Cast/Cast'));
+const ReviewsDetails = lazy(() => import('../Reviews/Reviews'));
 
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
@@ -66,13 +67,15 @@ export default function MovieDetailsPage() {
                         </ul>
                     </div>
                     <hr />
-                    <Route exact path="/movies/:movieId/cast">
-                        <CastDetails />
-                    </Route>
+                    <Suspense fallback={<CustomLoader />}>
+                        <Route exact path="/movies/:movieId/cast">
+                            <CastDetails />
+                        </Route>
 
-                    <Route exact path="/movies/:movieId/reviews">
-                        <ReviewsDetails />
-                    </Route>
+                        <Route exact path="/movies/:movieId/reviews">
+                            <ReviewsDetails />
+                        </Route>
+                    </Suspense>
                 </div>
             ) : (
                 <div>
