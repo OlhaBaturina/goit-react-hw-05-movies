@@ -2,7 +2,12 @@ import s from './MovieDetailsPage.module.css';
 import { useParams, Route } from 'react-router';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
-import { useRouteMatch, NavLink } from 'react-router-dom';
+import {
+    useRouteMatch,
+    NavLink,
+    useLocation,
+    useHistory,
+} from 'react-router-dom';
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import CustomLoader from '../Loader/Loader';
 const CastDetails = lazy(() => import('../Cast/Cast'));
@@ -11,18 +16,26 @@ const ReviewsDetails = lazy(() => import('../Reviews/Reviews'));
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const { url } = useRouteMatch();
-
+    const location = useLocation();
+    const history = useHistory();
     const [movie, setMovie] = useState({});
+    const newDate = new Date(movie.release_date);
 
     useEffect(() => {
         fetchAPI.getMoviesInfo(movieId).then(setMovie);
     }, [movieId]);
 
-    const newDate = new Date(movie.release_date);
+    const clickOnBack = () => {
+        history.push(location.state.from);
+    };
 
     return (
         <div className={s.movieDetailsPage}>
-            <button className={s.buttonBack}>
+            <button
+                type="button"
+                onClick={clickOnBack}
+                className={s.buttonBack}
+            >
                 <HiOutlineArrowNarrowLeft /> Go back
             </button>
             {movie.title || movie.name ? (

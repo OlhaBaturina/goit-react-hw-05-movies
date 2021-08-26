@@ -1,12 +1,14 @@
 import s from './MoviesPage.module.css';
 import React, { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 
 function SearchMovie() {
     const [query, setQuery] = useState('');
     const [search, setSearch] = useState(null);
     const [films, setFilms] = useState([]);
+    const location = useLocation();
+    const history = useHistory();
 
     useEffect(() => {
         search && fetchAPI.getFilmBySearch(search).then(setFilms);
@@ -48,7 +50,12 @@ function SearchMovie() {
                 <ul>
                     {films.map(film => (
                         <li key={film.id} className={s.listItem}>
-                            <Link to={`/movies/${film.id}`}>
+                            <Link
+                                to={{
+                                    pathname: `/movies/${film.id}`,
+                                    state: { from: location },
+                                }}
+                            >
                                 {film.title || film.name}
                             </Link>
                         </li>
