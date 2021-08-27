@@ -36,3 +36,7 @@
     margin-bottom: 8px;
     font-size: 16px;
 }
+img {
+    border-radius: 4px;
+    object-fit: cover;
+}

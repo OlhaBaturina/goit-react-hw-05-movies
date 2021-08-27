@@ -1,17 +1,22 @@
 .Navigation {
     display: flex;
-    align-items: stretch;
-    /* position: fixed; */
-    width: 100%;
+    justify-content: space-around;
+    /* width: 100%; */
+    padding: 0;
     /* top: 0;
     left: 0; */
     box-shadow: -5px 5px 5px rgba(71, 203, 207, 0.137);
 }
 
 .navLink {
+    display: block;
     margin: 30px;
     color: rgba(16, 71, 73, 0.993);
     text-decoration: none;
+    width: calc(100% / 2);
+    height: inherit;
+    text-align: center;
+    font-size: 26px;
 }
 
 .activeLink {

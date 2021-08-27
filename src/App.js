@@ -15,24 +15,25 @@ export function App() {
     return (
         <div>
             <Navigation />
+            <div className="Container">
+                <Suspense fallback={<CustomLoader />}>
+                    <Switch>
+                        <Route exact path="/">
+                            <HomePage />
+                        </Route>
+                        <Route exact path="/movies">
+                            <MoviesPage />
+                        </Route>
+                        <Route path="/movies/:movieId">
+                            <MovieDetailsPage />
+                        </Route>
 
-            <Suspense fallback={<CustomLoader />}>
-                <Switch>
-                    <Route exact path="/">
-                        <HomePage />
-                    </Route>
-                    <Route exact path="/movies">
-                        <MoviesPage />
-                    </Route>
-                    <Route path="/movies/:movieId">
-                        <MovieDetailsPage />
-                    </Route>
-
-                    <Route>
-                        <NotFound />
-                    </Route>
-                </Switch>
-            </Suspense>
+                        <Route>
+                            <NotFound />
+                        </Route>
+                    </Switch>
+                </Suspense>
+            </div>
         </div>
     );
 }

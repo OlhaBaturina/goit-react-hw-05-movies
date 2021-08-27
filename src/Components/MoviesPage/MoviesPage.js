@@ -54,7 +54,7 @@ function SearchMovie() {
     };
 
     return (
-        <div>
+        <div className={s.Container}>
             <header className={s.SearchMovie}>
                 <form className={s.SearchForm} onSubmit={handleSubmit}>
                     <button type="submit" className={s.SearchForm_button}>

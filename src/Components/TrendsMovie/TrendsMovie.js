@@ -24,8 +24,8 @@ export default function TrendsMovie() {
     }, []);
 
     return (
-        <div>
-            <h1>Trending today</h1>
+        <div className={s.Container}>
+            <h1 className={s.header}>Trending today</h1>
             {(status === 'pending' && (
                 <ul className={s.filmsList}>
                     {movies.map(movie => (

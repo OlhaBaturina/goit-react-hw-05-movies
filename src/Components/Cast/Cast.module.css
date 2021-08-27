@@ -22,3 +22,10 @@
     transform: scale(1.03);
     cursor: zoom-in;
 }
+
+.image {
+    width: 250px;
+    height: 350px;
+    border-radius: 4px;
+    object-fit: cover;
+}
