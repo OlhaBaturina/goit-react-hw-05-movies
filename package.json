@@ -22,6 +22,7 @@
     "react-slug": "^0.1.2",
     "react-toastify": "^7.0.4",
     "shortid": "^2.2.16",
+    "slug": "^5.1.0",
     "toasts": "^1.0.0",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.2"

@@ -1,12 +1,10 @@
 import s from './Cast.module.css';
-import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 import CustomLoader from '../Loader/Loader';
 import NotFound from '../../views/NotFound';
 
-export default function CastDetails() {
-    const { movieId } = useParams();
+export default function CastDetails({ movieId }) {
     const [cast, setCast] = useState([]);
     const [status, setStatus] = useState('pending');
 

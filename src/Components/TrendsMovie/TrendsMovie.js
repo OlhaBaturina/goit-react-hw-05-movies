@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 import { Link, useLocation } from 'react-router-dom';
 import CustomLoader from '../Loader/Loader';
+import slug from 'slug';
+
+const makeSlug = string => slug(string, { lower: true });
 
 export default function TrendsMovie() {
     const [movies, setMovies] = useState([]);
@@ -29,7 +32,11 @@ export default function TrendsMovie() {
                         <li className={s.filmLink} key={movie.id}>
                             <Link
                                 to={{
-                                    pathname: `/movies/${movie.id}`,
+                                    pathname: `/movies/${makeSlug(
+                                        `${movie.title || movie.name} ${
+                                            movie.id
+                                        }`,
+                                    )}`,
                                     state: { from: location },
                                 }}
                             >

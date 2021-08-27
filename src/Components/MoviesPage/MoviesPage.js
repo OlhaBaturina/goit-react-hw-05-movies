@@ -4,6 +4,10 @@ import { fetchAPI } from '../../servises/useFetch';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import CustomLoader from '../Loader/Loader';
 import NotFound from '../../views/NotFound';
+import { useRouteMatch } from 'react-router';
+import slug from 'slug';
+
+const makeSlug = string => slug(string, { lower: true });
 
 function SearchMovie() {
     const [query, setQuery] = useState('');
@@ -11,6 +15,7 @@ function SearchMovie() {
     const [films, setFilms] = useState([]);
     const location = useLocation();
     const history = useHistory();
+    const { url } = useRouteMatch();
     const urlQuery = new URLSearchParams(location.search).get('search');
     const [status, setStatus] = useState('pending');
 
@@ -77,7 +82,11 @@ function SearchMovie() {
                             <li key={film.id} className={s.listItem}>
                                 <Link
                                     to={{
-                                        pathname: `/movies/${film.id}`,
+                                        pathname: `${url}/${makeSlug(
+                                            `${film.title || film.name} ${
+                                                film.id
+                                            }`,
+                                        )}`,
                                         state: { from: location },
                                     }}
                                 >

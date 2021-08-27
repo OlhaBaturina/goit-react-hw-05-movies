@@ -10,19 +10,19 @@ import {
 } from 'react-router-dom';
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import CustomLoader from '../Loader/Loader';
+import NotFound from '../../views/NotFound';
 const CastDetails = lazy(() => import('../Cast/Cast'));
 const ReviewsDetails = lazy(() => import('../Reviews/Reviews'));
 
 export default function MovieDetailsPage() {
-    const { movieId } = useParams();
     const { url } = useRouteMatch();
     const location = useLocation();
     const history = useHistory();
     const [movie, setMovie] = useState({});
     const newDate = new Date(movie.release_date);
     const [status, setStatus] = useState('pending');
-
-    console.log(status);
+    const movieId = url.match(/[a-zA-Z0-9]+$/)[0];
+    // console.log(url.match(/[a-zA-Z0-9]+$/)[0]);
 
     useEffect(() => {
         setStatus('loading');
@@ -86,7 +86,10 @@ export default function MovieDetailsPage() {
                                 <NavLink
                                     to={{
                                         pathname: `${url}/cast`,
-                                        // state: { from: `/movies/${movie.id}` },
+                                        state: {
+                                            from: location?.state?.from ?? '/',
+                                            search: location?.state?.search,
+                                        },
                                     }}
                                 >
                                     Cast
@@ -96,7 +99,10 @@ export default function MovieDetailsPage() {
                                 <NavLink
                                     to={{
                                         pathname: `${url}/reviews`,
-                                        // state: { from: `/movies/${movie.id}` },
+                                        state: {
+                                            from: location?.state?.from ?? '/',
+                                            search: location?.state?.search,
+                                        },
                                     }}
                                 >
                                     Reviews
@@ -107,26 +113,17 @@ export default function MovieDetailsPage() {
                     <hr />
                     <Suspense fallback={<CustomLoader />}>
                         <Route exact path="/movies/:movieId/cast">
-                            <CastDetails />
+                            <CastDetails movieId={movieId} />
                         </Route>
 
                         <Route exact path="/movies/:movieId/reviews">
-                            <ReviewsDetails />
+                            <ReviewsDetails movieId={movieId} />
                         </Route>
                     </Suspense>
                 </div>
             )) ||
                 (status === 'loading' && <CustomLoader />) ||
-                (status === 'rejected' && (
-                    <div>
-                        <h1>404 Page not found 🔍</h1>
-                        <img
-                            src="https://mtdata.ru/u8/photo39C2/20569542232-0/original.jpg"
-                            alt="Page not found"
-                            width="360"
-                        />
-                    </div>
-                ))}
+                (status === 'rejected' && <NotFound />)}
         </div>
     );
 }

@@ -5,8 +5,8 @@ import { fetchAPI } from '../../servises/useFetch';
 import CustomLoader from '../Loader/Loader';
 import NotFound from '../../views/NotFound';
 
-export default function ReviewsDetails() {
-    const { movieId } = useParams();
+export default function ReviewsDetails({ movieId }) {
+    // const { movieId } = useParams();
     const [status, setStatus] = useState('pending');
     const [reviews, setReviews] = useState([]);
 
