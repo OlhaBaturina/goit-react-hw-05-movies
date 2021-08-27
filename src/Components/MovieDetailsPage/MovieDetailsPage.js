@@ -1,5 +1,5 @@
 import s from './MovieDetailsPage.module.css';
-import { useParams, Route } from 'react-router';
+import { Route } from 'react-router';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 import {

@@ -1,12 +1,10 @@
 import s from './Reviews.module.css';
-import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/useFetch';
 import CustomLoader from '../Loader/Loader';
 import NotFound from '../../views/NotFound';
 
 export default function ReviewsDetails({ movieId }) {
-    // const { movieId } = useParams();
     const [status, setStatus] = useState('pending');
     const [reviews, setReviews] = useState([]);
 
