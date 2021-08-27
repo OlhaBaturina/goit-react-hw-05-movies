@@ -37,7 +37,7 @@ export default function MovieDetailsPage() {
     }, [movieId]);
 
     const clickOnBack = () => {
-        history.push(location?.state?.from ?? `/movies`);
+        history.push(location?.state?.from ?? `/`);
     };
 
     return (
